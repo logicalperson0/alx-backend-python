@@ -4,6 +4,7 @@ a type-annotated file
 """
 from typing import Mapping, Union, Any, TypeVar
 
+
 T = TypeVar("T")
 
 
