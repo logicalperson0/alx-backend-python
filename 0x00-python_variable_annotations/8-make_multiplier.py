@@ -13,5 +13,5 @@ def make_multiplier(multiplier: float) -> Callable[[float], float]:
     def multi_float(multi: float) -> float:
         """Multiples the parameter with the parent function parameter"""
         return multi * multiplier
-    
+
     return multi_float
