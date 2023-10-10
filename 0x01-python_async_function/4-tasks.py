@@ -5,7 +5,6 @@ an asynchronous coroutine file
 import asyncio
 from typing import List
 waiting_3 = __import__('3-tasks').task_wait_random
-# waiting = __import__('0-basic_async_syntax').wait_random
 
 
 async def task_wait_n(n: int, max_delay: int) -> List[float]:
@@ -18,8 +17,6 @@ async def task_wait_n(n: int, max_delay: int) -> List[float]:
     for x in range(n):
         wait_x.append(waiting_3(max_delay))
 
-    """ it is bc of listing the results in
-    ascending order without using sort method we use as_completed!!!"""
     for y in asyncio.as_completed(wait_x): 
         z = await y
         total_wait.append(z)
