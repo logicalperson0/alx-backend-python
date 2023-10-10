@@ -14,7 +14,6 @@ async def async_comprehension() -> List[float]:
     10 random numbers"""
     res: List[float] = []
 
-    async for i in aiter(gen_0()):
-        res.append(i)
-    
+    res = [i async for i in gen_0()]
+
     return res
