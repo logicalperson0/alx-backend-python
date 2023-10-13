@@ -9,7 +9,7 @@ waiting = __import__('3-tasks').task_wait_random
 
 async def task_wait_n(n: int, max_delay: int) -> List[float]:
     """return the list of all the delays (float values). The list of the
-    delays should be in ascending order without using sort() because
+    delays should be in ascending order without using SORTING because
     of concurrency."""
     wait_x: List[float] = []
     total_wait: List[float] = []
