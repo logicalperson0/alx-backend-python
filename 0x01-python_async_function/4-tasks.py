@@ -4,7 +4,7 @@ an asynchronous coroutine file
 """
 import asyncio
 from typing import List
-waiting_3 = __import__('3-tasks').task_wait_random
+waiting = __import__('3-tasks').task_wait_random
 
 
 async def task_wait_n(n: int, max_delay: int) -> List[float]:
@@ -15,7 +15,7 @@ async def task_wait_n(n: int, max_delay: int) -> List[float]:
     total_wait: List[float] = []
 
     for x in range(n):
-        wait_x.append(waiting_3(max_delay))
+        wait_x.append(waiting(max_delay))
 
     for y in asyncio.as_completed(wait_x):
         z = await y
