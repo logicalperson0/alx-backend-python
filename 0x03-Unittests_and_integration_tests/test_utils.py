@@ -57,7 +57,7 @@ class TestGetJson(unittest.TestCase):
         # print(Mock())
         mock_url.return_value.json.return_value = test_payload
         actual = get_json(test_url)
-        print(actual)
+        # print(actual)
         # print(mock_url)
         mock_url.assert_called_once_with(test_url)
         self.assertEqual(actual, test_payload)
