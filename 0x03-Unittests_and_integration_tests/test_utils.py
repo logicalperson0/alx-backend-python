@@ -42,6 +42,7 @@ class TestAccessNestedMap(unittest.TestCase):
         with self.assertRaises(KeyError):
             access_nested_map(nested_map, path)
 
+
 class TestGetJson(unittest.TestCase):
     """class that inherits from unittest.TestCase"""
     @parameterized.expand([
@@ -51,10 +52,12 @@ class TestGetJson(unittest.TestCase):
     @patch('requests.get')
     def test_get_json(self, test_url, test_payload, mock_url):
         """method to test that utils.get_json returns the expected result"""
-        actual = get_json(test_url)
-        # print(actual)
+        # actual = get_json(test_url)
         mock_url.return_value = Mock()
+        # print(Mock())
         mock_url.return_value.json.return_value = test_payload
+        actual = get_json(test_url)
+        print (actual)
         # print(mock_url)
         mock_url.assert_called_once_with(test_url)
         self.assertEqual(actual, test_payload)
