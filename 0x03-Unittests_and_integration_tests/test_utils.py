@@ -4,9 +4,11 @@ a module with class: TestAccessNestedMap to test
 utils.access_nested_map function
 """
 import unittest
-from utils import access_nested_map
+from utils import access_nested_map, get_json
 from typing import Mapping, Sequence, Any
 from parameterized import parameterized
+from unittest.mock import patch, Mock
+import requests
 
 
 class TestAccessNestedMap(unittest.TestCase):
@@ -39,6 +41,23 @@ class TestAccessNestedMap(unittest.TestCase):
 
         with self.assertRaises(KeyError):
             access_nested_map(nested_map, path)
+
+class TestGetJson(unittest.TestCase):
+    """class that inherits from unittest.TestCase"""
+    @parameterized.expand([
+        ("http://example.com", {"payload": True}),
+        ("http://holberton.io", {"payload": False}),
+    ])
+    @patch('requests.get')
+    def test_get_json(self, test_url, test_payload, mock_url):
+        """method to test that utils.get_json returns the expected result"""
+        actual = get_json(test_url)
+        # print(actual)
+        mock_url.return_value = Mock()
+        mock_url.return_value.json.return_value = test_payload
+        # print(mock_url)
+        mock_url.assert_called_once_with(test_url)
+        self.assertEqual(actual, test_payload)
 
 
 if __name__ == '__main__':
