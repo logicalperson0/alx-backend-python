@@ -9,6 +9,7 @@ from parameterized import parameterized
 import requests
 from typing import Dict
 from unittest.mock import patch, Mock, MagicMock
+from mock import PropertyMock
 
 
 class TestGithubOrgClient(unittest.TestCase):
@@ -28,3 +29,15 @@ class TestGithubOrgClient(unittest.TestCase):
         # print(actual)
 
         self.assertEqual(actual, supposed)
+
+    def test_public_repos_url(self):
+        """method to unit-test GithubOrgClient._public_repos_url"""
+        with patch('client.GithubOrgClient',
+                   new_callable=PropertyMock) as prop:
+            prop.return_value = {
+                'repos_url': 'https://api.github.com/orgs/google'}
+
+            actual = GithubOrgClient('google')._public_repos_url
+
+            self.assertEqual(actual,
+                             'https://api.github.com/orgs/google/repos')
