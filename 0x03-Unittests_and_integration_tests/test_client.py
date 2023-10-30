@@ -14,8 +14,8 @@ from unittest.mock import patch, Mock, MagicMock
 class TestGithubOrgClient(unittest.TestCase):
     """class that inherits from unittest.TestCase"""
     @parameterized.expand([
-        ("google", {'login': 'google'}),
-        ("abc", {'login': 'abc'}),
+        ("google", {"name": "Google"}),
+        ("abc", {'name': 'abc'}),
     ])
     @patch('client.get_json')
     def test_org(self, orgs, supposed, mock_fn):
