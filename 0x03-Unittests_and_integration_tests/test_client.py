@@ -41,3 +41,19 @@ class TestGithubOrgClient(unittest.TestCase):
 
             self.assertEqual(actual,
                              'https://api.github.com/orgs/google/repos')
+
+    @patch("client.get_json")
+    def test_public_repos(self, mock_url):
+        """to unit-test GithubOrgClient.public_repos"""
+        with patch('client.GithubOrgClient',
+                   new_callable=PropertyMock) as props:
+            props.return_value = {
+                'repos_url': 'https://api.github.com/orgs/google'}
+
+            actual = GithubOrgClient('google').public_repos()
+
+            self.assertEqual(actual,
+                             'https://api.github.com/orgs/google/repos')
+            
+            props.assert_called_once()
+        mock_url.assert_called_once()
