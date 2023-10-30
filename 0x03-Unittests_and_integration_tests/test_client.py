@@ -54,6 +54,6 @@ class TestGithubOrgClient(unittest.TestCase):
 
             self.assertEqual(actual,
                              'https://api.github.com/orgs/google/repos')
-            
+  
             props.assert_called_once()
         mock_url.assert_called_once()
